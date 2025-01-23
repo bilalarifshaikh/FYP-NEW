@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Flowchart</title>
+    <link rel="stylesheet" href="{% static 'at_pipeline.css' %}">
+</head>
+<body>
+    <h1>AT FURNACE PROCESSING TO ASSEMBLY PLANT</h1>
+
+    <div class="flowchart">
+        <div class="step-container">
+            <div class="step">STAMPING</div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="step-container">
+            <div class="step">POLISHING</div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="step-container">
+            <div class="step">DRYING</div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="step-container">
+            <div class="step">AT FURNACE</div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="step-container">
+            <div class="step">SHOT PEENING</div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="step-container">
+            <div class="step">DISPATCH<br>(ASSEMBLY PLANT)</div>
+        </div>
+    </div>
+
+    <div class="parts">
+        <span class="part" data-color="#ffcc00">420 inner</span> <!-- Yellow -->
+        <span class="part" data-color="#00796b">420 outer</span>
+        <span class="part" data-color="#1e3a8a">428 inner</span> <!-- Professional Blue -->
+        <span class="part" data-color="#ff9800">428 outer</span>
+    </div>
+
+    <script src="{% static 'at_pipeline.js' %}"></script>
+</body>
+</html>

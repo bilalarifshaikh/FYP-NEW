@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Flowchart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            position: relative;
+            width: 1300px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box {
+            width: 150px;
+            height: 50px;
+            background-color: #ffffff;
+            border: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 12px;
+            flex-direction: column;
+        }
+        .box .part-name {
+            position: absolute;
+            top: -15px;
+            font-size: 10px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            width: 100%;
+        }
+        .box:hover {
+            background-color: #dcdcdc;
+            border-color: #555;
+            transform: scale(1.05);
+        }
+        /* Positions of boxes */
+        #stamping { top: 50px; left: 50px; }
+        #coldForming { top: 150px; left: 50px; }
+        #pinCutting { top: 250px; left: 50px; }
+        #polishing { top: 150px; left: 250px; }
+        #drying1 { top: 50px; left: 450px; }
+        #drying2 { top: 250px; left: 450px; }
+        #cpFurnace { top: 150px; left: 600px; }
+        #shotPeening { top: 250px; left: 800px; }
+        #tumblerPolishing { top: 50px; left: 800px; }
+        #drying { top: 150px; left: 1000px; }
+        #dispatch { top: 150px; left: 1200px; }
+        
+        /* Lines connecting boxes */
+        .line {
+            position: absolute;
+            background-color: black;
+        }
+        /* Horizontal lines */
+        .h-line { height: 2px; }
+        /* Vertical lines */
+        .v-line { width: 2px; }
+        
+        /* Specific lines */
+        .line1 { top: 75px; left: 200px; width: 50px; height: 2px; } /* Stamping -> Polishing */
+        .line2 { top: 175px; left: 200px; width: 50px; height: 2px; } /* Cold Forming -> Polishing */
+        .line3 { top: 275px; left: 200px; width: 50px; height: 2px; } /* Pin Cutting -> Polishing */
+        .line4 { top: 75px; left: 400px; width: 50px; height: 2px; } /* Polishing -> Drying 1 */
+        .line5 { top: 275px; left: 400px; width: 50px; height: 2px; } /* Polishing -> Drying 2 */
+        .line6 { top: 75px; left: 550px; width: 2px; height: 150px; } /* Drying 1 -> CP Furnace */
+        .line7 { top: 275px; left: 550px; width: 2px; height: -150px; } /* Drying 2 -> CP Furnace */
+        .line8 { top: 75px; left: 750px; width: 50px; height: 2px; } /* CP Furnace -> Tumbler Polishing */
+        .line9 { top: 275px; left: 750px; width: 50px; height: 2px; } /* CP Furnace -> Shot Peening */
+        .line10 { top: 75px; left: 950px; width: 50px; height: 2px; } /* Tumbler Polishing -> Drying */
+        .line11 { top: 175px; left: 1150px; width: 50px; height: 2px; } /* Drying -> Dispatch */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Boxes -->
+        <div id="stamping" class="box"><div class="part-name">CAM inner, CAM outer</div>STAMPING</div>
+        <div id="coldForming" class="box"><div class="part-name">420 bush, CAM bush</div>COLD FORMING</div>
+        <div id="pinCutting" class="box"><div class="part-name">420 pin, CAM pin</div>PIN CUTTING</div>
+        <div id="polishing" class="box"><div class="part-name">All 10 parts</div>POLISHING</div>
+        <div id="drying1" class="box"><div class="part-name">CAM inner</div>DRYING 1</div>
+        <div id="drying2" class="box"><div class="part-name">420 bush</div>DRYING 2</div>
+        <div id="cpFurnace" class="box"><div class="part-name">All 10 parts</div>CP FURNACE</div>
+        <div id="shotPeening" class="box"><div class="part-name">420 bush</div>SHOT PEENING</div>
+        <div id="tumblerPolishing" class="box"><div class="part-name">CAM inner</div>TUMBLER POLISHING</div>
+        <div id="drying" class="box"><div class="part-name">CAM inner</div>DRYING</div>
+        <div id="dispatch" class="box"><div class="part-name">CAM inner</div>DISPATCH</div>
+
+        <!-- Connecting Lines -->
+        <div class="line h-line line1"></div>
+        <div class="line h-line line2"></div>
+        <div class="line h-line line3"></div>
+        <div class="line h-line line4"></div>
+        <div class="line h-line line5"></div>
+        <div class="line v-line line6"></div>
+        <div class="line v-line line7"></div>
+        <div class="line h-line line8"></div>
+        <div class="line h-line line9"></div>
+        <div class="line h-line line10"></div>
+        <div class="line h-line line11"></div>
+    </div>
+</body>
+</html>

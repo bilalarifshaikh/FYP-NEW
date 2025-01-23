@@ -1,0 +1,117 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    margin-top: 60px; /* To avoid navbar overlap */
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #5b66c7;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-sizing: border-box; /* Ensures padding does not overflow */
+}
+
+.navbar .logo {
+    height: 40px; /* Adjust size as needed */
+}
+
+.navbar .back-button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px; /* Added some padding */
+}
+
+.navbar .back-button:hover {
+    text-decoration: underline;
+}
+
+/* Add margin-top to avoid navbar overlapping content */
+body {
+    margin-top: 60px; /* Adjust as needed based on navbar height */
+}
+
+/* Stages Layout */
+.stage {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.process {
+    padding: 15px 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+    font-size: 14px;
+    min-width: 150px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover Effect for Process Boxes */
+.process:hover {
+    transform: translateY(-5px);
+    background-color: #f1f1f1;
+}
+
+/* Highlight Selected Process */
+.process.selected {
+    border-color: #007BFF;
+    background-color: #E6F7FF;
+}
+
+/* Arrow Lines Between Processes */
+.arrow-line {
+    position: absolute;
+    width: 2px;
+    background-color: #333;
+    z-index: 0;
+}
+
+.arrow-line::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: solid #333;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    right: -6px;
+    top: -6px;
+}
+
+/* Highlighted Arrows */
+.arrow-line.highlight {
+    background-color: #007BFF;
+}
+
+.arrow-line.highlight::after {
+    border-color: #007BFF;
+}

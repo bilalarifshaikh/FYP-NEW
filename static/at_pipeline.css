@@ -1,0 +1,108 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh; /* Ensure it fills the viewport */
+    box-sizing: border-box; /* To ensure padding does not affect layout */
+}
+
+/* Adjustments to flowchart container to center with margin */
+.flowchart {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    max-width: 1200px; /* Set a max-width for the flowchart */
+    width: 100%; /* Ensure it takes up full width available */
+    padding: 0 15px; /* Adds margin to both sides */
+    box-sizing: border-box; /* Ensure padding does not affect layout */
+}
+
+/* Process Step Styling */
+.step-container {
+    text-align: center;
+}
+
+.step {
+    position: relative;
+    padding: 20px 30px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+}
+
+.step:hover {
+    background-color: #e0f7fa;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 150, 136, 0.5);
+}
+
+/* Arrow Styling (Dotted Arrows) */
+.arrow {
+    width: 80px;
+    height: 4px;
+    background: transparent;
+    position: relative;
+    border-top: 2px dotted #333; /* Dotted border */
+    animation: none; /* Disable glow animation */
+}
+
+.arrow::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: -6px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid #333;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+}
+
+/* Parts Styling */
+.parts {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.part {
+    padding: 8px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 2px solid #333;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.part:hover {
+    transform: scale(1.1);
+}
+
+.part.selected {
+    background-color: var(--part-color);
+    color: #fff;
+}
+
+/* Dynamic Color Update for Arrows */
+.arrow.highlight {
+    border-top: 2px dotted var(--part-color);
+}
+
+.arrow.highlight::after {
+    border-left-color: var(--part-color);
+}
