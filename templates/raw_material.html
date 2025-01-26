@@ -1,0 +1,282 @@
+<!--ABDLLAH'S WORK-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #cccccc4d;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .add-product-container {
+            position: relative;
+            width: 50%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 22px rgba(0, 0, 0, 0.3);
+            background-color: white;
+        }
+
+        .Product-title {
+            color: #7380ec;
+        }
+
+        .top-effect {
+            position: absolute;
+            content: '';
+            display: block;
+            width: 100%;
+            height: 5px;
+            background-color: #7380ec;
+            top: 0;
+            left: 0;
+            border-radius: 40px;
+        }
+
+        .add-product-container div {
+            margin-bottom: 20px;
+        }
+
+        .add-product-container label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .add-product-container input,
+        .add-product-container select {
+            width: 100%;
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            background-color: #cccccc50;
+        }
+
+        .add-product-container select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: 1px solid #ccc;
+        }
+
+        .add-product-container input {
+            padding-block: 14px;
+        }
+
+        .add-product-container input::placeholder {
+            padding-left: 10px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #7380ec;
+            color: #fff;
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #4d84e2;
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            .add-product-container {
+                width: 90%;
+                padding: 10px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .add-product-container input,
+            .add-product-container select,
+            button[type="submit"] {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+
+            .add-product-container input {
+                padding-block: 14px;
+                font-size: 13px;
+            }
+
+            .add-product-container input::placeholder {
+                padding-left: 10px;
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .add-product-container {
+                width: 400px;
+            }
+
+            .add-product-container input,
+            .add-product-container select {
+                padding: 8px;
+                font-size: 1rem;
+            }
+
+            button[type="submit"] {
+                padding: 8px;
+                font-size: 1.1rem;
+            }
+
+            .add-product-container input {
+                padding-block: 14px;
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 769px) {
+            .add-product-container {
+                max-width: 500px;
+            }
+
+            .add-product-container input {
+                padding-block: 14px;
+            }
+
+            .add-product-container input::placeholder {
+                padding-left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+        <div class="container">
+            <div class="add-product-container">
+                <span class="top-effect"></span>
+                <h2>Select <span class="Product-title">Model, Material, and Part</span></h2>
+                
+                <!-- Model Selection -->
+                <div class="model-selection">
+                    <label for="model">Select Model</label>
+                    <select name="model" id="model" required>
+                        <option value="" disabled selected>Select a model</option>
+                        <option value="420">420</option>
+                        <option value="428">428</option>
+                        <option value="CAM">CAM</option>
+                    </select>
+                </div>
+
+                <!-- Material Selection -->
+                <div class="material-selection">
+                    <label for="material">Select Material</label>
+                    <select name="material" id="material" required>
+                        <option value="" disabled selected>Select material</option>
+                    </select>
+                </div>
+
+                <!-- Part Selection -->
+                <div class="part-selection">
+                    <label for="part">Select Part</label>
+                    <select name="part" id="part" required>
+                        <option value="" disabled selected>Select part</option>
+                    </select>
+                </div>
+
+                <!-- Raw Material Count -->
+                <div class="raw-material">
+                    <label for="raw-material-count">Enter Raw Material Count</label>
+                    <input type="number" placeholder="Enter raw material count" name="raw-material-count" id="raw-material-count" required>
+                </div>
+
+                <!-- Unit Selection -->
+                <div class="unit-selection">
+                    <label for="unit">Select Unit</label>
+                    <select name="unit" id="unit" required>
+                        <option value="" disabled selected>Select a unit</option>
+                        <option value="kg">Kilograms (kg)</option>
+                        <option value="grams">Grams (g)</option>
+                        <option value="ton">Tons (t)</option>
+                    </select>
+                </div>
+
+                <button type="submit">Submit Target</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        const materials = {
+            "420": [
+                "SAE1050 (1.2 × 104.2)", "SAE1050 (1.2 × 1219)", "Steel Wire SCR420 (φ3.97)"
+            ],
+            "428": [
+                "SAE1050 (1.5 × 111.3)", "SAE1050 (1.5 × 1219)", "Steel Wire SAE1018 (φ8.10)"
+            ],
+            "CAM": [
+                "SAE1045 (0.72 × 98)", "Steel Wire SCM420 (φ2.30)", "Cold Rolled Steel SAE 8620 (0.435 × 4.72)"
+            ]
+        };
+
+        const parts = {
+            "420": ["Inner Plate", "Outer Plate", "Pin"],
+            "428": ["Inner Plate", "Outer Plate", "Roller"],
+            "CAM": ["Inner Plate", "Bush", "Pin"]
+        };
+
+        const modelSelect = document.getElementById("model");
+        const materialSelect = document.getElementById("material");
+        const partSelect = document.getElementById("part");
+
+        modelSelect.addEventListener("change", function () {
+            const selectedModel = this.value;
+
+            // Update Material Options
+            materialSelect.innerHTML = '<option value="" disabled selected>Select material</option>';
+            materials[selectedModel].forEach(material => {
+                const option = document.createElement("option");
+                option.value = material;
+                option.textContent = material;
+                materialSelect.appendChild(option);
+            });
+
+            // Update Part Options
+            partSelect.innerHTML = '<option value="" disabled selected>Select part</option>';
+            parts[selectedModel].forEach(part => {
+                const option = document.createElement("option");
+                option.value = part;
+                option.textContent = part;
+                partSelect.appendChild(option);
+            });
+        });
+    </script>
+</body>
+</html>
