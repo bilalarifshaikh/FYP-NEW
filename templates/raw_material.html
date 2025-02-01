@@ -178,13 +178,14 @@
     </style>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="{% url 'raw_material' %}" method="post">
+        {% csrf_token %}
         <div class="container">
             <div class="add-product-container">
                 <span class="top-effect"></span>
-                <h2>Select <span class="Product-title">Model, Material, and Part</span></h2>
-                
-                <!-- Model Selection -->
+                <h2>Select <span class="Product-title">Model, Part, and Material</span></h2>
+
+                <!-- Model Selection (First Dropdown) -->
                 <div class="model-selection">
                     <label for="model">Select Model</label>
                     <select name="model" id="model" required>
@@ -195,15 +196,7 @@
                     </select>
                 </div>
 
-                <!-- Material Selection -->
-                <div class="material-selection">
-                    <label for="material">Select Material</label>
-                    <select name="material" id="material" required>
-                        <option value="" disabled selected>Select material</option>
-                    </select>
-                </div>
-
-                <!-- Part Selection -->
+                <!-- Part Selection (Filters Based on Model) -->
                 <div class="part-selection">
                     <label for="part">Select Part</label>
                     <select name="part" id="part" required>
@@ -211,10 +204,18 @@
                     </select>
                 </div>
 
+                <!-- Material Selection (Filters Based on Part) -->
+                <div class="material-selection">
+                    <label for="material">Select Material</label>
+                    <select name="material" id="material" required>
+                        <option value="" disabled selected>Select material</option>
+                    </select>
+                </div>
+
                 <!-- Raw Material Count -->
                 <div class="raw-material">
                     <label for="raw-material-count">Enter Raw Material Count</label>
-                    <input type="number" placeholder="Enter raw material count" name="raw-material-count" id="raw-material-count" required>
+                    <input type="number" placeholder="Enter raw material count" name="quantity" id="raw-material-count" required>
                 </div>
 
                 <!-- Unit Selection -->
@@ -234,48 +235,71 @@
     </form>
 
     <script>
-        const materials = {
-            "420": [
-                "SAE1050 (1.2 × 104.2)", "SAE1050 (1.2 × 1219)", "Steel Wire SCR420 (φ3.97)"
-            ],
-            "428": [
-                "SAE1050 (1.5 × 111.3)", "SAE1050 (1.5 × 1219)", "Steel Wire SAE1018 (φ8.10)"
-            ],
-            "CAM": [
-                "SAE1045 (0.72 × 98)", "Steel Wire SCM420 (φ2.30)", "Cold Rolled Steel SAE 8620 (0.435 × 4.72)"
-            ]
+        // Data structure for model → parts mapping
+        const modelParts = {
+            "420": ["Inner Plate", "Outer Plate", "Pin", "Bush", "Roller"],
+            "428": ["Inner Plate", "Outer Plate", "Pin", "Bush", "Roller"],
+            "CAM": ["Inner Plate", "Outer Plate", "Pin", "Bush"]
         };
 
-        const parts = {
-            "420": ["Inner Plate", "Outer Plate", "Pin"],
-            "428": ["Inner Plate", "Outer Plate", "Roller"],
-            "CAM": ["Inner Plate", "Bush", "Pin"]
+        // Data structure for part → material mapping
+        const partMaterials = {
+            "420-Inner Plate": ["SAE1050 (1.2 × 104.2)", "SAE1050 (1.2 × 1219)"],
+            "420-Outer Plate": ["SAE1050 (1.2 × 110.4)", "SAE1050 (1.2 × 1219)"],
+            "420-Pin": ["Steel Wire SCR420 (φ3.97)"],
+            "420-Bush": ["Steel Wire SAE1018 (φ5.00)"],
+            "420-Roller": ["Steel Wire SAE1018 (φ7.50)"],
+
+            "428-Inner Plate": ["SAE1050 (1.5 × 111.3)", "SAE1050 (1.5 × 1219)"],
+            "428-Outer Plate": ["SAE1050 (1.5 × 115.7)", "SAE1050 (1.5 × 1219)"],
+            "428-Pin": ["Steel Wire SCR420 (φ4.51)"],
+            "428-Bush": ["Steel Wire SAE1018 (φ6.03)"],
+            "428-Roller": ["Steel Wire SAE1018 (φ8.10)"],
+
+            "CAM-Inner Plate": ["SAE1045 (0.72 × 98)", "SAE1045 (0.72 × 1000)"],
+            "CAM-Outer Plate": ["SAE1045 (0.72 × 95.5)", "SAE1045 (0.72 × 1000)"],
+            "CAM-Pin": ["Steel Wire SCM420 (φ2.30)"],
+            "CAM-Bush": ["Cold Rolled Steel SAE 8620 (0.435 × 4.72)"]
         };
 
         const modelSelect = document.getElementById("model");
-        const materialSelect = document.getElementById("material");
         const partSelect = document.getElementById("part");
+        const materialSelect = document.getElementById("material");
 
+        // When model changes, update the part dropdown
         modelSelect.addEventListener("change", function () {
             const selectedModel = this.value;
 
-            // Update Material Options
-            materialSelect.innerHTML = '<option value="" disabled selected>Select material</option>';
-            materials[selectedModel].forEach(material => {
-                const option = document.createElement("option");
-                option.value = material;
-                option.textContent = material;
-                materialSelect.appendChild(option);
-            });
-
-            // Update Part Options
+            // Clear and reset part dropdown
             partSelect.innerHTML = '<option value="" disabled selected>Select part</option>';
-            parts[selectedModel].forEach(part => {
-                const option = document.createElement("option");
-                option.value = part;
-                option.textContent = part;
-                partSelect.appendChild(option);
-            });
+            materialSelect.innerHTML = '<option value="" disabled selected>Select material</option>';
+
+            if (selectedModel in modelParts) {
+                modelParts[selectedModel].forEach(part => {
+                    const option = document.createElement("option");
+                    option.value = part;
+                    option.textContent = part;
+                    partSelect.appendChild(option);
+                });
+            }
+        });
+
+        // When part changes, update the material dropdown
+        partSelect.addEventListener("change", function () {
+            const selectedModel = modelSelect.value;
+            const selectedPart = this.value;
+            const key = `${selectedModel}-${selectedPart}`;
+
+            materialSelect.innerHTML = '<option value="" disabled selected>Select material</option>';
+
+            if (key in partMaterials) {
+                partMaterials[key].forEach(material => {
+                    const option = document.createElement("option");
+                    option.value = material;
+                    option.textContent = material;
+                    materialSelect.appendChild(option);
+                });
+            }
         });
     </script>
 </body>

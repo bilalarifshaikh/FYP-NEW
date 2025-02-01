@@ -19,6 +19,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.display, name="display"),
     path('login/', views.login_request, name="login"),
     path('Targets/', views.targets, name="targets"),
@@ -39,5 +40,5 @@ urlpatterns = [
     path('Dashboard/', views.RenderDashboard, name="Show Dashboard"),
     path('logout/', views.logout, name="Logout"),
     path('graph/', views.graphs, name="graphs"),
-    path('raw_material/', views.raw_material, name="raw_material"),
+    path('raw-material/', views.raw_material, name='raw_material'),
 ]
