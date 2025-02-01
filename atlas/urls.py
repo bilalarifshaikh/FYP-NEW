@@ -39,4 +39,5 @@ urlpatterns = [
     path('Dashboard/', views.RenderDashboard, name="Show Dashboard"),
     path('logout/', views.logout, name="Logout"),
     path('graph/', views.graphs, name="graphs"),
+    path('raw_material/', views.raw_material, name="raw_material"),
 ]

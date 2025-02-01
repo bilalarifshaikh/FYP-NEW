@@ -42,3 +42,5 @@ def targets(request):
     return render(request, "targets.html")
 def CpFurnace(request):
     return render(request, "cp_furnace.html")
+def raw_material(request):
+    return render(request, "raw_material.html")
