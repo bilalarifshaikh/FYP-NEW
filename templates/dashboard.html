@@ -106,19 +106,31 @@
           </div>          
         </div>        
       </div>-->
-
+<!-- Code by Hamna -->
       <div class="insights">
         <div class="clients">
           <span class="material-symbols-sharp">bubble_chart</span>
           <div class="middle">
             <div class="left">
               <h3 class="main-text">420 PARTS</h3>
+              <p>Total Quantity: {{ total_quantities.420 }}</p> 
               <ul class="hover-list">
-                <li onclick="handleClick('420 Inner Plate')">420 Inner Plate</li>
-                <li onclick="handleClick('420 Outer Plate')">420 Outer Plate</li>
-                <li onclick="handleClick('420 Bush')">420 Bush</li>
-                <li onclick="handleClick('420 Pin')">420 Pin</li>
-                <li onclick="handleClick('420 Roller')">420 Roller</li>
+               <li onclick="handleClick('420 Inner Plate')" style="color: {% if quantities.Inner_Plate|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    420 Inner Plate <br> Quantity: {{ quantities.Inner_Plate|default:0 }}
+</li>
+<li onclick="handleClick('420 Outer Plate')" style="color: {% if quantities.Outer_Plate|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    420 Outer Plate <br> Quantity: {{ quantities.Outer_Plate|default:0 }}
+</li>
+<li onclick="handleClick('420 Bush')" style="color: {% if quantities.Bush|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    420 Bush <br> Quantity: {{ quantities.Bush|default:0 }}
+</li>
+<li onclick="handleClick('420 Pin')" style="color: {% if quantities.Pin|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    420 Pin <br> Quantity: {{ quantities.Pin|default:0 }}
+</li>
+<li onclick="handleClick('420 Roller')" style="color: {% if quantities.Roller|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    420 Roller <br> Quantity: {{ quantities.Roller|default:0 }}
+</li>
+
               </ul>
             </div>
           </div>
@@ -129,12 +141,24 @@
           <div class="middle">
             <div class="left">
               <h3 class="main-text">428 PARTS</h3>
+                            <p>Total Quantity: {{ total_quantities.420 }}</p> 
+
               <ul class="hover-list">
-                <li onclick="handleClick('428 Inner Plate')">428 Inner Plate</li>
-                <li onclick="handleClick('428 Outer Plate')">428 Outer Plate</li>
-                <li onclick="handleClick('428 Pin')">428 Pin</li>
-                <li onclick="handleClick('428 Roller')">428 Roller</li>
-                <li onclick="handleClick('428 Bush')">428 Bush</li>
+                <li onclick="handleClick('420 Inner Plate')" style="color: {% if quantities.Inner_Plate|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    428 Inner Plate <br> Quantity: {{ quantities.Inner_Plate|default:0 }}
+</li>
+<li onclick="handleClick('420 Outer Plate')" style="color: {% if quantities.Outer_Plate|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    428 Outer Plate <br> Quantity: {{ quantities.Outer_Plate|default:0 }}
+</li>
+<li onclick="handleClick('420 Bush')" style="color: {% if quantities.Bush|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    428 Bush <br> Quantity: {{ quantities.Bush|default:0 }}
+</li>
+<li onclick="handleClick('420 Pin')" style="color: {% if quantities.Pin|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    428 Pin <br> Quantity: {{ quantities.Pin|default:0 }}
+</li>
+<li onclick="handleClick('420 Roller')" style="color: {% if quantities.Roller|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    428 Roller <br> Quantity: {{ quantities.Roller|default:0 }}
+</li>
               </ul>
             </div>
           </div>
@@ -145,11 +169,21 @@
           <div class="middle">
             <div class="left">
               <h3 class="main-text">CAM PARTS</h3>
+                            <p>Total Quantity: {{ total_quantities.420 }}</p> 
+
               <ul class="hover-list">
-                <li onclick="handleClick('CAM Inner Plate')">CAM Inner Plate</li>
-                <li onclick="handleClick('CAM Outer Plate')">CAM Outer Plate</li>
-                <li onclick="handleClick('CAM Pin')">CAM Pin</li>
-                <li onclick="handleClick('CAM Bush')">CAM Bush</li>
+                 <li onclick="handleClick('420 Inner Plate')" style="color: {% if quantities.Inner_Plate|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    CAM Inner Plate <br> Quantity: {{ quantities.Inner_Plate|default:0 }}
+</li>
+<li onclick="handleClick('420 Outer Plate')" style="color: {% if quantities.Outer_Plate|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    CAM Outer Plate <br> Quantity: {{ quantities.Outer_Plate|default:0 }}
+</li>
+<li onclick="handleClick('420 Bush')" style="color: {% if quantities.Bush|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    CAM Bush <br> Quantity: {{ quantities.Bush|default:0 }}
+</li>
+<li onclick="handleClick('420 Pin')" style="color: {% if quantities.Pin|default:0 < 15 %}red{% else %}inherit{% endif %};">
+    CAM Pin <br> Quantity: {{ quantities.Pin|default:0 }}
+</li>
               </ul>
             </div>
           </div>
@@ -157,6 +191,7 @@
       </div>
       
       
+<!-- Code by Hamna -->
 
       <!-------- End of Insights ---------->
 
