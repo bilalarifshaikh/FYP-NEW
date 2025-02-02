@@ -9,7 +9,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-
+        /* Alert Styles */
+        .alert {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
         * {
             box-sizing: border-box;
         }
@@ -178,6 +194,27 @@
     </style>
 </head>
 <body>
+
+    <!-- Alert Messages -->
+    {% if messages %}
+    <div id="alert-container">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    <script>
+        // Auto-hide alerts after 3 seconds
+        setTimeout(() => {
+            let alertBox = document.getElementById("alert-container");
+            if (alertBox) {
+                alertBox.style.display = "none";
+            }
+        }, 3000);
+    </script>
+    {% endif %}
+
     <form action="{% url 'raw_material' %}" method="post">
         {% csrf_token %}
         <div class="container">
@@ -185,7 +222,7 @@
                 <span class="top-effect"></span>
                 <h2>Select <span class="Product-title">Model, Part, and Material</span></h2>
 
-                <!-- Model Selection (First Dropdown) -->
+                <!-- Model Selection -->
                 <div class="model-selection">
                     <label for="model">Select Model</label>
                     <select name="model" id="model" required>
@@ -196,7 +233,7 @@
                     </select>
                 </div>
 
-                <!-- Part Selection (Filters Based on Model) -->
+                <!-- Part Selection -->
                 <div class="part-selection">
                     <label for="part">Select Part</label>
                     <select name="part" id="part" required>
@@ -204,7 +241,7 @@
                     </select>
                 </div>
 
-                <!-- Material Selection (Filters Based on Part) -->
+                <!-- Material Selection -->
                 <div class="material-selection">
                     <label for="material">Select Material</label>
                     <select name="material" id="material" required>

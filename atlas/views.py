@@ -12,6 +12,32 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.message import EmailMessage
 from django.db import transaction
+from django.core.exceptions import ValidationError
+
+# BOM dictionary (replace with your existing BOM)
+BOM = {
+    "420": {
+        "Inner Plate": {"SAE1050 (1.2 × 104.2)": 249.95, "SAE1050 (1.2 × 1219)": 249.95},
+        "Outer Plate": {"SAE1050 (1.2 × 110.4)": 189.14, "SAE1050 (1.2 × 1219)": 189.14},
+        "Pin": {"Steel Wire SCR420 (φ3.97)": 149.59},
+        "Bush": {"Steel Wire SAE1018 (φ5.00)": 109.75},
+        "Roller": {"Steel Wire SAE1018 (φ7.50)": 161.42},
+    },
+    "428": {
+        "Inner Plate": {"SAE1050 (1.5 × 111.3)": 394.17, "SAE1050 (1.5 × 1219)": 394.17},
+        "Outer Plate": {"SAE1050 (1.5 × 115.7)": 314.42, "SAE1050 (1.5 × 1219)": 314.42},
+        "Pin": {"Steel Wire SCR420 (φ4.51)": 228.15},
+        "Bush": {"Steel Wire SAE1018 (φ6.03)": 149.45},
+        "Roller": {"Steel Wire SAE1018 (φ8.10)": 234.52},
+    },
+    "CAM": {
+        "Inner Plate": {"SAE1045 (0.72 × 98)": 40.48, "SAE1045 (0.72 × 1000)": 40.48},
+        "Outer Plate": {"SAE1045 (0.72 × 95.5)": 33.18, "SAE1045 (0.72 × 1000)": 33.18},
+        "Pin": {"Steel Wire SCM420 (φ2.30)": 23.60},
+        "Bush": {"Cold Rolled Steel SAE 8620 (0.435 × 4.72)": 13.62},
+    },
+}
+
 
 # Creating login logic and interface
 def login_request(request):
@@ -31,21 +57,52 @@ def login_request(request):
 
 # Code by Hamna
 # Render the dashboard and fetch quantities for 420 parts and total quantities for each model
-def RenderDashboard(request):
-    # Fetch quantities for the "420" model and its parts
-    raw_materials = RawMaterial.objects.filter(model="420")
-    quantities = {item.part: item.quantity for item in raw_materials}
+def calculate_production(bom, raw_materials):
+    """
+    Calculate how many parts and complete chains can be produced based on raw materials.
+    """
+    parts_production = {}
+    for part, materials in bom.items():
+        min_production = float('inf')
+        
+        # Combine stocks for replacement materials
+        combined_stock = 0
+        for material, qty_required in materials.items():
+            available_stock = raw_materials.get(material.strip(), 0)  # Normalize material name
+            combined_stock += available_stock
 
-    # Fetch total quantities for each model
-    total_quantities = {
-        '420': raw_materials.aggregate(total=Sum('quantity'))['total'] or 0,
-        '428': RawMaterial.objects.filter(model='428').aggregate(total=Sum('quantity'))['total'] or 0,
-        'CAM': RawMaterial.objects.filter(model='CAM').aggregate(total=Sum('quantity'))['total'] or 0,
-    }
+        # Calculate possible units for this part using combined stock
+        for material, qty_required in materials.items():
+            possible_units = combined_stock // qty_required
+            min_production = min(min_production, possible_units)
+
+        parts_production[part] = int(min_production)  # Total parts possible
+    return parts_production
+
+
+def RenderDashboard(request):
+    # Fetch raw material stock from the database
+    raw_materials = RawMaterial.objects.values('material').annotate(total=Sum('quantity'))
+    raw_materials_dict = {item['material'].strip(): item['total'] for item in raw_materials}
+
+    # Debugging: Print normalized raw materials stock
+    print("Normalized Raw Materials Stock:", raw_materials_dict)
+
+    # Calculate production for each model
+    production = {}
+    for model, bom in BOM.items():
+        parts_production = calculate_production(bom, raw_materials_dict)
+        complete_chains = min(parts_production.values()) if parts_production else 0  # Bottleneck part determines chains
+        production[model] = {
+            "parts": parts_production,
+            "chains": complete_chains,
+        }
+
+    # Debugging: Print production data
+    print("Production Data:", production)
 
     return render(request, 'dashboard.html', {
-        'quantities': quantities,
-        'total_quantities': total_quantities,
+        'production': production,
     })
 # Code by Hamna
 
@@ -97,20 +154,18 @@ def raw_material(request):
             messages.error(request, "Quantity must be a valid number.")
             return redirect("raw_material")
 
-        # Check if a record already exists
+        # Check if the material already exists
         existing_material = RawMaterial.objects.filter(
             model=model, part=part, material=material
         ).first()
 
         if existing_material:
-            # Increment the quantity if it exists
+            # Increment quantity
             existing_material.quantity += quantity
             existing_material.save()
-            messages.success(
-                request, f"Updated quantity of {material} by {quantity} units."
-            )
+            messages.success(request, f"Updated quantity of {material} by {quantity} units.")
         else:
-            # Create a new record if it doesn't exist
+            # Create new material record
             RawMaterial.objects.create(
                 model=model, part=part, material=material, quantity=quantity
             )
