@@ -117,7 +117,7 @@ def graphs(request):
 
 # Log out the user
 def logout_view(request):
-    logout(request)
+    # logout(request)
     return redirect('login')  # Redirect to the login page after logout
 
 # Render the display page

@@ -38,7 +38,7 @@ urlpatterns = [
     path('CpFurnace/', views.CpFurnace , name='cp_furnace'),
     path('AddLogistics/', views.RenderDashboard, name="Add Logistics"),
     path('Dashboard/', views.RenderDashboard, name="Show Dashboard"),
-    path('logout/', views.logout, name="Logout"),
+    path('logout/', views.logout_view, name="Logout"),
     path('graph/', views.graphs, name="graphs"),
     path('raw-material/', views.raw_material, name='raw_material'),
 ]
