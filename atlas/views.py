@@ -121,7 +121,7 @@ def logout_view(request):
     return redirect('login')  # Redirect to the login page after logout
 
 # Render the display page
-def display(request):
+def display(request):  
     return render(request, "display.html")
 
 # Render the targets page
