@@ -1,24 +1,9 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-/* Body Styling */
-body {
-    background-color: #001f3f;
-    color: #fff;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Navbar Styling */
+/* 
+ABDULLAH
+Navbar Styling */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Spaces out the elements: logo on the left, login button on the right */
+    justify-content: space-between;
     align-items: center;
     background-color: #5b66c7;
     padding: 10px 20px;
@@ -28,20 +13,34 @@ body {
     z-index: 10;
 }
 
-.navbar .logo {
-    order: 1; /* Logo stays first */
+/* Left Section: Logo */
+.navbar-left {
+    flex: 1; /* Ensures left section takes space */
+    display: flex;
+    align-items: center;
 }
 
-.navbar .current-date {
-    order: 2; /* Current date is in the middle */
-    margin: 0 auto; /* Centers the current date in the middle */
+.logo {
+    height: 40px;
+    width: auto;
 }
 
-.navbar .login-button {
-    order: 3; /* Login button is last, positioned on the right */
+/* Center Section: Shift, Time, Date */
+.navbar-center {
+    flex: 2; /* Ensures center section takes more space */
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
 }
 
-/* Button Styling */
+/* Right Section: Login Button */
+.navbar-right {
+    flex: 1; /* Ensures right section takes space */
+    display: flex;
+    justify-content: flex-end;
+}
+
 .login-button {
     background-color: #18191a;
     color: #fff;
@@ -55,48 +54,4 @@ body {
 
 .login-button:hover {
     background-color: #004080;
-}
-
-.current-date {
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.logo {
-    height: 40px;
-    width: auto;
-}
-
-/* Container for Boxes */
-.container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columns */
-    grid-template-rows: auto;
-    gap: 15px;
-    padding: 20px;
-    flex: 1;
-}
-
-/* Box Styling */
-.box {
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center; /* Centers text horizontally */
-    font-weight: bold; /* Makes text bold */
-    font-size: 24px; /* Increases font size */
-    display: flex; /* Enables flexbox */
-    justify-content: center; /* Centers text horizontally */
-    align-items: center; /* Centers text vertically */
-    height: 120px; /* Ensures box height for better centering */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease-in-out, background-color 0.3s;
-    word-break: break-word; /* Prevents text overflow */
-}
-
-.box:hover {
-    transform: scale(1.03);
-    background-color: #d0d0d0;
 }
