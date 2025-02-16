@@ -45,3 +45,25 @@ class RawMaterial(models.Model):
 
     def __str__(self):
         return f"{self.model} - {self.part} ({self.material})"
+
+class FinishedProduct(models.Model):
+    MODEL_CHOICES = [
+        ('420', '420'),
+        ('428', '428'),
+        ('CAM', 'CAM'),
+    ]
+
+    PART_CHOICES = [
+        ('Inner Plate', 'Inner Plate'),
+        ('Outer Plate', 'Outer Plate'),
+        ('Pin', 'Pin'),
+        ('Bush', 'Bush'),
+        ('Roller', 'Roller'),
+    ]
+
+    model = models.CharField(max_length=50, choices=MODEL_CHOICES)
+    part = models.CharField(max_length=50, choices=PART_CHOICES)
+    quantity = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.model} - {self.part} ({self.quantity})"
