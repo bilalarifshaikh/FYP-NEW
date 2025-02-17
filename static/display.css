@@ -1,6 +1,27 @@
 /* 
 ABDULLAH
 Navbar Styling */
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #001f3f;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 
+ABDULLAH
+Navbar Styling */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -54,4 +75,54 @@ Navbar Styling */
 
 .login-button:hover {
     background-color: #004080;
+}
+
+/* Container for Boxes */
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    grid-template-rows: auto;
+    gap: 15px;
+    padding: 20px;
+    flex: 1;
+}
+
+/* Box Styling */
+.box {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, background-color 0.3s;
+    word-break: break-word;
+}
+
+/* Highlight main process title */
+.box .process-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+/* Smaller text for additional details */
+.box .process-details {
+    font-size: 16px;
+    font-weight: normal;
+    color: #444;
+}
+
+/* Box Hover Effect */
+.box:hover {
+    transform: scale(1.03);
+    background-color: #d0d0d0;
 }
