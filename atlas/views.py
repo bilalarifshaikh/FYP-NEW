@@ -222,7 +222,9 @@ def download_pdf(request):
         table_data.append([product.model, product.part, str(product.quantity)])
 
     # Create the table with borders
-    table = Table(table_data, colWidths=[doc.width/4.0] * 3)
+    # table = Table(table_data, colWidths=[doc.width/4.0] * 3)
+    table = Table(table_data, colWidths=[doc.width / 3, doc.width / 3, doc.width / 3])  # Columns span equally
+
 
     # Style the table
     table.setStyle(TableStyle([
