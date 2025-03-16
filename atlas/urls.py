@@ -41,4 +41,9 @@ urlpatterns = [
     path('logout/', views.logout_view, name="Logout"),
     path('graph/', views.graphs, name="graphs"),
     path('raw-material/', views.raw_material, name='raw_material'),
+    path('ShowRawMaterial/', views.ShowRawMaterial, name="ShowRawMaterial"),
+    path('ShowFinishedMat/', views.ShowFinishedMat, name="ShowFinishedMat"),
+    path('download_pdf/', views.download_pdf, name='download_pdf'),
+    path('download_pdf2/', views.download_pdf2, name='download_pdf2'),
+    
 ]
