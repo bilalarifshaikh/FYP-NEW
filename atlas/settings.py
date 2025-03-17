@@ -14,15 +14,9 @@ from pathlib import Path
 import os
 import logging
 import dj_database_url
-from celery.schedules import crontab
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-TIME_ZONE = 'Asia/Karachi'
-USE_TZ = True
-
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,17 +34,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django_celery_beat',
-    'atlas',
+    'atlas'
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,7 +126,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-CRONJOBS = [
-    {'*/5 * * * *', 'home.cron.print_hello'}
-]

@@ -62,13 +62,6 @@ body {
     position: relative;
 }
 
-.stage-arrow {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-}
-
 .process {
     padding: 15px 20px;
     border: 2px solid #333;
