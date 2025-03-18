@@ -67,3 +67,30 @@ class FinishedProduct(models.Model):
 
     def __str__(self):
         return f"{self.model} - {self.part} ({self.quantity})"
+
+class Priority420(models.Model):
+    model = models.CharField(max_length=50, default="420")
+    part = models.CharField(max_length=50)
+    priority = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.model} - {self.part} (Priority {self.priority})"
+    
+# Priority model for 428
+class Priority428(models.Model):
+    model = models.CharField(max_length=50, default="428")
+    part = models.CharField(max_length=50)
+    priority = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.model} - {self.part} (Priority {self.priority})"
+
+# Priority model for CAM
+class PriorityCAM(models.Model):
+    model = models.CharField(max_length=50, default="CAM")
+    part = models.CharField(max_length=50)
+    priority = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.model} - {self.part} (Priority {self.priority})"
+
