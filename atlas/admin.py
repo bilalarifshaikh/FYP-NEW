@@ -10,3 +10,4 @@ admin.site.register(FinishedProduct)
 admin.site.register(Priority420)
 admin.site.register(Priority428)
 admin.site.register(PriorityCAM)
+
