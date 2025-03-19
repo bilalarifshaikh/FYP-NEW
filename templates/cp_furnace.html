@@ -14,47 +14,264 @@
         <button class="back-button" onclick="window.history.back();">Back</button>
     </div>
 
-    <h1>CB Furnace Processing to Assembly Plant</h1>
+    <title>Interactive Flowchart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    <!-- Stage 1 -->
-    <div class="stage">
-        <div class="process" id="stamping">Stamping<br><span>CAM inner, CAM outer</span><div class="arrow-container"></div></div>
-        <div class="process" id="cold-forming">Cold Forming<br><span>420 bush, 420 roller...</span><div class="arrow-container"></div></div>
-        <div class="process" id="pin-cutting">Pin Cutting<br><span>420 pin, 428 pin...</span><div class="arrow-container"></div></div>
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .flowchart-container {
+            position: relative;
+            width: 1100px;
+            height: 625px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* overflow: auto; */
+        }
+
+        .box {
+            position: absolute;
+            background-color:rgb(252, 253, 253);
+            color: black;
+            border: 2px solid black;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: box-shadow 0.2s ease;
+            z-index: 2;
+        }
+
+        .box:hover {
+            box-shadow: 0 0 0 4px rgba(247, 251, 253, 0.3);
+        }
+
+        .tooltip {
+            position: absolute;
+            background-color: white;
+            color: #333;
+            padding: 8px 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            width: 200px;
+            font-size: 14px;
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+            pointer-events: none;
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            transform: rotate(45deg);
+            bottom: -6px;
+            left: calc(50% - 6px);
+        }
+
+        .box:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        @media (max-width: 1000px) {
+            .flowchart-container {
+                width: 100%;
+                height: auto;
+
+
+                
+                min-height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>CB FURNACE</h1>
+    <div class="flowchart-container">
+        <svg width="1400" height="950">
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#000000" />
+                </marker>
+            </defs>
+            
+            <!-- Arrows with improved alignment -->
+            <!-- TEXT 1 to TEXT 4 -->
+            <path d="M150 45 L180 45 L180 225 L200 225" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+            <!-- TEXT 2 to TEXT 4 -->
+            <path d="M150 225 L200 225" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+            <!-- TEXT 3 to TEXT 4 -->
+            <path d="M150 445 L180 445 L180 225 L200 225" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+            <!-- TEXT 4 to TEXT 5 -->
+            <path d="M300 220 L315 220 L315 125 L350 125" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+            <!-- TEXT 4 to TEXT 6 -->
+            <path d="M300 230 L315 230 L315 365 L350 365" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+            <!-- TEXT 5 to TEXT 7 (CORRECTED) -->
+            <path d="M450 125 L465 125 L465 225 L500 225" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+            <!-- TEXT 6 to TEXT 7 -->
+            <path d="M450 365 L465 365 L465 225 L500 225" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+            <!-- TEXT 7 to TEXT 8 -->
+            <path d="M600 220 L615 220 L615 125 L650 125" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+            <!-- TEXT 7 to TEXT 9  -->
+            <path d="M600 230 L615 230 L615 365 L650 365" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+            <!-- TEXT 8 to TEXT 10 -->
+            <path d="M750 125 L765 125 L765 225 L800 225" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+            <!-- TEXT 9 to TEXT 10 -->
+            <path d="M750 365 L765 365 L765 225 L800 225" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+            <!-- TEXT 10 to TEXT 11 -->
+            <path d="M900 225 L960 225" fill="none" stroke="#000000" stroke-width="3" marker-end="url(#arrowhead)"></path>
+            
+        </svg>
+
+        
+        
+        <!-- Boxes -->
+        <div id="box1" class="box" style="left: 50px; top: 20px; width: 100px; height: 50px;">
+            STAMPING
+            <div class="tooltip" style="bottom: 60px; left: 50%;">CAM INNER PLATE and OUTER PLATE are executing under this process</div>
+        </div>
+        
+        <div id="box2" class="box" style="left: 50px; top: 200px; width: 100px; height: 50px;">
+            COLD<br>FORMING
+            <div class="tooltip" style="bottom: 60px; left: 50%;">420 BUSH, 420 ROLLER, 428 BUSH, 428 ROLLER and CAM BUSH are executing under this process</div>
+        </div>
+        
+        <div id="box3" class="box" style="left: 50px; top: 420px; width: 100px; height: 50px;">
+            PIN<br>CUTTING
+            <div class="tooltip" style="bottom: 60px; left: 50%;">420 PIN, 428 PIN and CAM PIN are executing under this process</div>
+        </div>
+        
+        <div id="box4" class="box" style="left: 200px; top: 200px; width: 100px; height: 50px;">
+            POLISHING
+            <div class="tooltip" style="bottom: 60px; left: 50%;">All the parts are executing under this process.</div>
+        </div>
+        
+        <div id="box5" class="box" style="left: 350px; top: 100px; width: 100px; height: 50px;">
+            DRYING 1
+            <div class="tooltip" style="bottom: 60px; left: 50%;">CAM INNER, CAM OUTER, CAM PIN and CAM BUSH are executing under this process</div>
+        </div>
+        
+        <div id="box6" class="box" style="left: 350px; top: 340px; width: 100px; height: 50px;">
+            DRYING 2
+            <div class="tooltip" style="bottom: 60px; left: 50%;">420 BUSH, 420 ROLLER, 420 PIN, 428 BUSH, 428 ROLLER and 428 PIN are executing under this process</div>
+        </div>
+        
+        <div id="box7" class="box" style="left: 500px; top: 200px; width: 100px; height: 50px;">
+            CB<br>FURNANCE
+            <div class="tooltip" style="bottom: 60px; left: 50%;">All the parts are executing under this process.</div>
+        </div>
+        
+        <div id="box8" class="box" style="left: 650px; top: 100px; width: 100px; height: 50px;">
+            TUMBLER<br>POLISHING
+            <div class="tooltip" style="bottom: 60px; left: 50%;">CAM INNER, CAM OUTER, CAM PIN and CAM BUSH are executing under this process</div>
+        </div>
+        
+        <div id="box9" class="box" style="left: 650px; top: 340px; width: 100px; height: 50px;">
+            SHOT<br>PEENING
+            <div class="tooltip" style="bottom: 60px; left: 50%;">420 BUSH, 420 ROLLER, 420 PIN, 428 BUSH, 428 ROLLER and 428 PIN are executing under this process</div>
+        </div>
+        
+        <div id="box10" class="box" style="left: 800px; top: 200px; width: 100px; height: 50px;">
+            DRYING
+            <div class="tooltip" style="bottom: 60px; left: 50%;"> CAM INNER, CAM OUTER, CAM PIN and CAM BUSH are executing under this process</div>
+        </div>
+
+        <div id="box11" class="box" style="left: 960px; top: 200px; width: 100px; height: 50px;">
+            DISPATCH
+            <div class="tooltip" style="bottom: 60px; left: 50%;">The parts are finally assembled here.</div>
+        </div>
     </div>
 
-    <!-- Stage 2 -->
-    <div class="stage">
-        <div class="process" id="polishing">Polishing<br><span>All 10 parts</span><div class="arrow-container"></div></div>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Position tooltips correctly
+            const boxes = document.querySelectorAll('.box');
+            
+            boxes.forEach(box => {
+                const tooltip = box.querySelector('.tooltip');
+                
+                // Center the tooltip horizontally
+                tooltip.style.transform = 'translateX(-50%)';
+                
+                // Add highlight effect on hover
+                box.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '3';
+                });
+                
+                box.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '2';
+                });
+            });
 
-    <!-- Stage 3 -->
-    <div class="stage">
-        <div class="process" id="drying-1">Drying 1<br><span>CAM inner, CAM outer...</span><div class="arrow-container"></div></div>
-        <div class="process" id="drying-2">Drying 2<br><span>420 bush, 420 roller...</span><div class="arrow-container"></div></div>
-    </div>
-
-    <!-- Stage 4 -->
-    <div class="stage">
-        <div class="process" id="cp-furnace">CP Furnace<br><span>All 10 parts</span><div class="arrow-container"></div></div>
-    </div>
-
-    <!-- Stage 5 -->
-    <div class="stage">
-        <div class="process" id="tumbler-polishing">Tumbler Polishing<br><span>CAM inner, CAM outer...</span><div class="arrow-container"></div></div>
-        <div class="process" id="shot-peening">Shot Peening<br><span>420 bush, 420 roller...</span><div class="arrow-container"></div></div>
-    </div>
-
-    <!-- Stage 6 -->
-    <div class="stage">
-        <div class="process" id="drying-final">Drying<div class="arrow-container"></div></div>
-    </div>
-
-    <!-- Dispatch -->
-    <div class="stage">
-        <div class="process" id="dispatch">Dispatch (Assembly Plant)<div class="arrow-container"></div></div>
-    </div>
-
-    <script src="{% static 'cp_furnace.js' %}"></script>
+            // Function to dynamically adjust arrow paths based on box positions
+            function updateArrowPaths() {
+                const boxPositions = {};
+                
+                // Get all box positions
+                boxes.forEach(box => {
+                    const id = box.id;
+                    const rect = box.getBoundingClientRect();
+                    const containerRect = document.querySelector('.flowchart-container').getBoundingClientRect();
+                    
+                    boxPositions[id] = {
+                        left: rect.left - containerRect.left,
+                        right: rect.right - containerRect.left,
+                        top: rect.top - containerRect.top,
+                        bottom: rect.bottom - containerRect.top,
+                        centerX: (rect.left + rect.right) / 2 - containerRect.left,
+                        centerY: (rect.top + rect.bottom) / 2 - containerRect.top
+                    };
+                });
+                
+                // This function could be expanded to dynamically adjust arrow paths
+                // based on the actual positions of the boxes
+            }
+            
+            // Call once on load
+            updateArrowPaths();
+            
+            // Update on window resize
+            window.addEventListener('resize', updateArrowPaths);
+        });
+    </script>
 </body>
 </html>
