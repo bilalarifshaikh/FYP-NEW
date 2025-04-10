@@ -20,7 +20,9 @@
         <!-- Shift, Date, and Time in center -->
         <div class="navbar-center">
             <span id="currentDate"></span> | 
-            <span id="currentTime"></span> | 
+            <span id="currentTime"></span> |
+            Shift 1
+            <!-- <span id="shift">Shift 1</span>   -->
             <span id="shift"></span>
         </div>
 
@@ -38,7 +40,7 @@
         </div>
         <div class="box">
             <div class="process-title">Cold Forming</div>
-            <div class="process-details">420 roller<br>Process Time: 25 min<br>Shift: 2</div>
+            <div class="process-details">420 roller<br>Process Time: 25 min<br>shift: 1</div>
         </div>
         <div class="box">
             <div class="process-title">Pin Cutting</div>
@@ -46,7 +48,7 @@
         </div>
         <div class="box">
             <div class="process-title">Polishing</div>
-            <div class="process-details">420 outer<br>Process Time: 40 min<br>Shift: 2</div>
+            <div class="process-details">420 outer<br>Process Time: 40 min<br>shift: 1</div>
         </div>
         <div class="box">
             <div class="process-title">Drying 1</div>
@@ -54,7 +56,7 @@
         </div>
         <div class="box">
             <div class="process-title">Drying 2</div>
-            <div class="process-details">CAM bush<br>Process Time: 30 min<br>Shift: 2</div>
+            <div class="process-details">CAM bush<br>Process Time: 30 min<br>shift: 1</div>
         </div>
         <div class="box">
             <div class="process-title">AT Furnace</div>
@@ -62,7 +64,7 @@
         </div>
         <div class="box">
             <div class="process-title">CP Furnace</div>
-            <div class="process-details">CAM inner<br>Process Time: 60 min<br>Shift: 2</div>
+            <div class="process-details">CAM inner<br>Process Time: 60 min<br>shift: 1</div>
         </div>
         <div class="box">
             <div class="process-title">Short Peening</div>
@@ -70,7 +72,7 @@
         </div>
         <div class="box">
             <div class="process-title">Tumbler Polishing</div>
-            <div class="process-details">CAM bush<br>Process Time: 35 min<br>Shift: 2</div>
+            <div class="process-details">CAM bush<br>Process Time: 35 min<br>shift: 1</div>
         </div>
         <div class="box">
             <div class="process-title">Drying</div>
@@ -93,8 +95,8 @@
             document.getElementById("currentTime").innerText = timeString;
 
             // Randomly assign Shift 1 or Shift 2
-            const shift = Math.random() > 0.5 ? "Shift 1" : "Shift 2";
-            document.getElementById("shift").innerText = shift;
+            //const shift = Math.random() > 0.5 ? "Shift 1" : "Shift 2";
+            //document.getElementById("shift").innerText = shift;
         }
 
         updateTime(); // Run on page load

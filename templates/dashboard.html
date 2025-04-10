@@ -40,32 +40,31 @@
           <span class="material-symbols-sharp">home</span>
           <h3>HomePage</h3>
         </a>
-        <a href="{% url 'homepage' %}" class="active">
+        <!-- <a href="{% url 'homepage' %}" class="active">
           <span class="material-symbols-sharp">home</span>
           <h3>Dashboard</h3>
-        </a>
-        <a href="{% url 'Payorder' %}">
-          <span class="material-symbols-sharp">description</span>
-          <h3>Analytics Report</h3>
-        </a>
+        </a> -->
         <a href="{% url 'targets' %}">
           <span class="material-symbols-sharp">description</span>
           <h3>Targets Entry</h3>
         </a>
-
         <a href="{% url 'raw_material' %}">
           <span class="material-symbols-sharp">description</span>
           <h3>Raw Material Form</h3>
-
+        </a>
+        <a href="{% url 'ShowRawMaterial' %}">
+          <span class="material-symbols-sharp">description</span>
+          <h3>Raw Material Reports</h3>
+        </a>
+        <a href="{% url 'ShowFinishedMat' %}">
+          <span class="material-symbols-sharp">description</span>
+          <h3>Finished Product Report</h3>
+        </a>
         <a href="{% url 'Logout' %}">
           <span class="material-symbols-sharp">logout</span>
           <h3>Logout</h3>
         </a>
       </div>
-
-      
-      
-
     </aside>
 
     <!------------END OF ASIDE ------------>
@@ -123,7 +122,7 @@
               <ul class="hover-list">
                   {% for part, qty in data.parts.items %}
                   <li style="color: {% if qty < 15 %}red{% else %}inherit{% endif %};">
-                      {{ model }} {{ part }} <br> Quantity Possible: {{ qty }}
+                      {{ model }} {{ part }} <br> Chains Possible: {{ qty }}
                   </li>
                   {% endfor %}
               </ul>

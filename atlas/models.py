@@ -93,4 +93,3 @@ class PriorityCAM(models.Model):
 
     def __str__(self):
         return f"{self.model} - {self.part} (Priority {self.priority})"
-

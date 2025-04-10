@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CB Furnace Process Flow</title>
+    <title>CP Furnace Process Flow</title>
     <link rel="stylesheet" href="{% static 'cp_furnace.css' %}">
 </head>
 <body>
@@ -34,9 +34,9 @@
             position: relative;
             width: 1100px;
             height: 625px;
-            background-color: white;
+            /* background-color: white; */
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
             /* overflow: auto; */
         }
 
@@ -114,6 +114,8 @@
     </style>
 </head>
 <body>
+    <div style="padding: 20px;">
+    </div>
     <h1>CB FURNACE</h1>
     <div class="flowchart-container">
         <svg width="1400" height="950">
@@ -169,6 +171,10 @@
             STAMPING
             <div class="tooltip" style="bottom: 60px; left: 50%;">CAM INNER PLATE and OUTER PLATE are executing under this process</div>
         </div>
+        <div style="position: absolute; top: 80px; left: 40px; font-size: 10px; font-family: Arial; font-weight: bold; sans-serif; text-transform: uppercase; letter-spacing: 2px; color: #222;">
+            "CAM INNER PLATE"
+        </div>
+        
         
         <div id="box2" class="box" style="left: 50px; top: 200px; width: 100px; height: 50px;">
             COLD<br>FORMING
